@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PrjUcb</string>
+    <string name="login">Login</string>
+    <string name="senha">Senha</string>
+    <string name="entrar">ENTRAR</string>
+    <string name="cancelar">CANCELAR</string>
+    <string name="esqueci_senha">Esqueci minha senha</string>
+    <string name="lembrar_credencial">Lembrar credenciais</string>
+</resources>
