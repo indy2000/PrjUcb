@@ -10,7 +10,18 @@
     <string name="cadastro_usuario">Cadastro de Usuário</string>
     <string name="consulta_usuario">Consulta Usuário</string>
     <string name="reservar_lab">Reservar Laboratório</string>
-    <string name="consulta_agendamento">Consultar Reservas</string>
+    <string name="consulta_agendamento">Consulta de Reservas</string>
+    <string name="recursos">Recursos</string>
+    <string name="gerir_usuarios">Gerência de Usuários</string>
+    <string name="config">Configurações</string>
+    <string name="tema">Modo %s</string>
+    <string name="alterar_senha">Alterar Senha</string>
+    <string name="reservar">Reservar por Dia</string>
+    <string name="reservar_periodo">Alocação por Período</string>
+    <string name="sair">Sair</string>
+    <string name="principal">Principal</string>
+    <string name="noturno">Noturno</string>
+    <string name="claro">Claro</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

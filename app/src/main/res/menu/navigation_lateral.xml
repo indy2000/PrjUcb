@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+         <item android:id="@+id/principal_lateral_gerir"
+             android:title="@string/gerir_usuarios" />
+         <item android:id="@+id/principal_lateral_reservarLab"
+             android:title="@string/reservar_lab"/>
+         <item android:id="@+id/principal_lateral_consultarReserva"
+             android:title="@string/consulta_agendamento"/>
+
+    <item android:title="@string/config">
+        <menu>
+            <item android:id="@+id/principal_lateral_tema"
+                android:title="@string/tema"
+                app:actionViewClass="android.widget.Switch" />
+            <item android:id="@+id/principal_lateral_alterarSenha"
+                android:title="@string/alterar_senha"/>
+            <item android:id="@+id/principal_lateral_sair"
+                android:title="@string/sair"/>
+        </menu>
+    </item>
+</menu>
