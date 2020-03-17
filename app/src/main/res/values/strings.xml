@@ -1,9 +1,17 @@
 <resources>
     <string name="app_name">PrjUcb</string>
+    <string name="app_versao">v%s</string>
     <string name="login">Login</string>
     <string name="senha">Senha</string>
     <string name="entrar">ENTRAR</string>
     <string name="cancelar">CANCELAR</string>
     <string name="esqueci_senha">Esqueci minha senha</string>
     <string name="lembrar_credencial">Lembrar credenciais</string>
+    <string name="cadastro_usuario">Cadastro de Usuário</string>
+    <string name="consulta_usuario">Consulta Usuário</string>
+    <string name="reservar_lab">Reservar Laboratório</string>
+    <string name="consulta_agendamento">Consultar Reservas</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

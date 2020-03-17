@@ -19,7 +19,7 @@ class Login : AppCompatActivity() {
         btnEntrar = findViewById(R.id.login_btnEntrar)
         tvVersao = findViewById(R.id.login_tvVersao)
 
-        tvVersao?.text = BuildConfig.VERSION_NAME
+        tvVersao?.text = String.format(getString(R.string.app_versao), BuildConfig.VERSION_NAME)
 
         btnEntrar?.setOnClickListener(btnEntrarListener())
     }
