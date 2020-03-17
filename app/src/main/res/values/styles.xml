@@ -6,6 +6,8 @@
         <item name="colorPrimary">@color/colorPrimaryDark</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionMenuTextColor">@android:color/white</item>
+        <item name="logoColor">@color/colorPrimaryDark</item>
     </style>
 
     <style name="AppThemeDark" parent="Theme.MaterialComponents.NoActionBar">
@@ -13,6 +15,9 @@
         <item name="colorPrimary">@color/colorPrimaryDark</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="backgroundTint">@android:color/white</item>
+        <item name="logoColor">@color/colorAccent</item>
     </style>
+
 
 </resources>
