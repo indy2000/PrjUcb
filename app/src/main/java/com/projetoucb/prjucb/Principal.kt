@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.animation.Animation
 import android.widget.CompoundButton
@@ -21,18 +22,19 @@ import androidx.core.view.GravityCompat
 import androidx.core.view.get
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import com.projetoucb.prjucb.utils.Prefs
+import com.projetoucb.prjucb.utils.Tema
 
 class Principal : AppCompatActivity() {
 
-    private var btnMenuUsuario: ImageView? = null
-    private var btnConsultaReserva: ImageView? = null
-    private var btnReservarLab: ImageView? = null
     private lateinit var layoutDrawer: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(Tema.setTema(Prefs.getTema(this@Principal)))
         setContentView(R.layout.activity_main)
 
+        supportFragmentManager.beginTransaction().replace(R.id.principal_container, FragMenuPrincipal(), "MENU_PRINCIPAL").commit()
         layoutDrawer = findViewById<DrawerLayout>(R.id.principal_drawerLayout)
         layoutDrawer.setScrimColor(ContextCompat.getColor(this@Principal, R.color.colorPrimaryDark))
 
@@ -40,6 +42,12 @@ class Principal : AppCompatActivity() {
 
         val navigationDrawer = findViewById<NavigationView>(R.id.principal_navigationLateral)
         navigationDrawer.setNavigationItemSelectedListener(navigationListener())
+        val switch = navigationDrawer.menu.findItem(R.id.principal_lateral_tema)
+            .actionView.findViewById<Switch>(R.id.principal_lateral_tema)
+            switch.isChecked = Tema.setSwitchChecked(this@Principal)
+        navigationDrawer.menu.findItem(R.id.principal_lateral_tema)
+            .title = String.format(getString(R.string.tema, Tema.getNomeTema(this@Principal)))
+        switch.setOnCheckedChangeListener(switchListerner(navigationDrawer.menu.findItem(R.id.principal_lateral_tema)))
         val cabecalho = navigationDrawer.inflateHeaderView(R.layout.navigation_cabecalho)
         val tvUsuario = cabecalho.findViewById<TextView>(R.id.cabecalho_tvUsuario)
         tvUsuario.text = "FULANO DA SILVA"
@@ -75,11 +83,38 @@ class Principal : AppCompatActivity() {
             findViewById<DrawerLayout>(R.id.principal_drawerLayout).closeDrawer(GravityCompat.START)
             when(item.itemId)
             {
-                R.id.principal_lateral_tema ->
+                R.id.principal_lateral_gerir ->
                 {
-                    var switch = findViewById<Switch>(R.id.principal_lateral_tema)
-                    switch.setOnCheckedChangeListener(switchListerner())
+                    title = getString(R.string.gerir_usuarios)
+                    supportFragmentManager.beginTransaction()
+                        .setCustomAnimations(android.R.anim.slide_out_right, android.R.anim.slide_in_left)
+                        .addToBackStack("MENU_PRINCIPAL")
+                        .replace(R.id.principal_container, FragGerirUsarios())
+                        .commit()
                 }
+//                R.id.principal_lateral_tema ->
+//                {
+//                    var switch = findViewById<Switch>(R.id.principal_lateral_tema)
+//                    if(!switch.isChecked)
+//                    {
+//                        switch.isChecked = true
+//                        Prefs.setTema(this@Principal,"noturno")
+//                        finish()
+//                        startActivity(Intent(applicationContext,Principal::class.java))
+//                        item.title = String.format(getString(R.string.tema), getString(R.string.noturno))
+//
+//                    }
+//                    else
+//                    {
+//                        switch.isChecked = false
+//                        Prefs.setTema(this@Principal,"claro")
+//                        finish()
+//                        startActivity(Intent(applicationContext,Principal::class.java))
+//                        item.title = String.format(getString(R.string.tema), getString(R.string.claro))
+//                    }
+//
+//                    //switch.setOnCheckedChangeListener(switchListerner(item))
+//                }
                 R.id.principal_lateral_sair ->
                 {
                     finish()
@@ -111,28 +146,30 @@ class Principal : AppCompatActivity() {
         //endregion
     }
 
-    private fun switchListerner() = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+    private fun switchListerner(item: MenuItem) = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
 
         if(isChecked)
         {
-            applicationContext.setTheme(R.style.AppThemeDark)
-            findViewById<Switch>(R.id.principal_lateral_tema)
-                .text = String.format(getString(R.string.tema), getString(R.string.noturno))
+            Prefs.setTema(this@Principal,"noturno")
             finish()
             startActivity(Intent(applicationContext,Principal::class.java))
+            item.title = String.format(getString(R.string.tema), getString(R.string.noturno))
 
         }
         else
         {
-            applicationContext.setTheme(R.style.AppTheme)
-            findViewById<Switch>(R.id.principal_lateral_tema)
-                .text = String.format(getString(R.string.tema), getString(R.string.claro))
+            Prefs.setTema(this@Principal,"claro")
             finish()
             startActivity(Intent(applicationContext,Principal::class.java))
+            item.title = String.format(getString(R.string.tema), getString(R.string.claro))
         }
     }
 
     override fun onBackPressed() {
+        if(supportFragmentManager.backStackEntryCount > 0)
+        {
+            supportFragmentManager.popBackStack()
+        }
         if(layoutDrawer.isDrawerOpen(GravityCompat.START)) layoutDrawer.closeDrawer(GravityCompat.START)
     }
 }

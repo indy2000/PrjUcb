@@ -6,6 +6,8 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.projetoucb.prjucb.utils.Prefs
+import com.projetoucb.prjucb.utils.Tema
 
 class Login : AppCompatActivity() {
 
@@ -13,6 +15,7 @@ class Login : AppCompatActivity() {
     private var tvVersao: TextView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(Tema.setTema(Prefs.getTema(this@Login)))
         setContentView(R.layout.activity_login)
 
         btnEntrar = findViewById(R.id.login_btnEntrar)
@@ -28,5 +31,9 @@ class Login : AppCompatActivity() {
             val intent = Intent(this@Login, Principal::class.java )
             this.startActivity(intent)
         }
+    }
+
+    override fun onBackPressed() {
+
     }
 }

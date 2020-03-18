@@ -1,2 +1,3 @@
 rootProject.name='PrjUcb'
-include ':app'
+include ':app',':data',':repo'
+

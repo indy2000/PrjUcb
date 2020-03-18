@@ -1,4 +1,9 @@
 <resources>
+    <string-array name="tipo_usuario">
+        <item>Tipo de Usuario</item>
+        <item>Administrador</item>
+        <item>Professor</item>
+    </string-array>
     <string name="app_name">PrjUcb</string>
     <string name="app_versao">v%s</string>
     <string name="login">Login</string>
@@ -22,6 +27,17 @@
     <string name="principal">Principal</string>
     <string name="noturno">Noturno</string>
     <string name="claro">Claro</string>
+    <string name="nome">Nome</string>
+    <string name="email">E-mail</string>
+    <string name="usuario">Usuário</string>
+    <string name="matricula">Matrícula</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="campo_nome">Nome: %s</string>
+    <string name="campo_email">E-mail: %s</string>
+    <string name="campo_usuario">Usuário: %s</string>
+    <string name="campo_matricula">Matrícula: %s</string>
+    <string name="campo_tipo_usuario">Tipo de Usuário: %s</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

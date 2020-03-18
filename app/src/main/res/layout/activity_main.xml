@@ -25,11 +25,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:animateLayoutChanges="true">
-            <fragment
+            <!--<fragment
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:layout="@layout/fragment_main_menu"
-                class="com.projetoucb.prjucb.FragMenuPrincipal"/>
+                class="com.projetoucb.prjucb.FragMenuPrincipal"/>-->
         </FrameLayout>
     </LinearLayout>
 
