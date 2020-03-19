@@ -8,12 +8,17 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.projetoucb.data.entity.Usuario
 import com.projetoucb.prjucb.adapters.ItensUsuariosAdapter
 import com.projetoucb.prjucb.utils.Utils
+import com.projetoucb.prjucb.viewModel.UsuarioViewModel
+import com.projetoucb.repo.repository.UsuarioRepository
 
 
 class FragGerirUsarios: Fragment()
@@ -21,6 +26,7 @@ class FragGerirUsarios: Fragment()
     private lateinit var fabCadastrar: FloatingActionButton
     private var recyclerView: RecyclerView? = null
     private lateinit var dialog: AlertDialog
+    private lateinit var usuarioViewModel: UsuarioViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,24 +50,35 @@ class FragGerirUsarios: Fragment()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        usuarioViewModel = ViewModelProviders.of(this).get(UsuarioViewModel::class.java)
+        usuarioViewModel.usuarioLiveData.observe(viewLifecycleOwner, Observer {
+            if(it.obj.isNullOrEmpty())
+            {
+                Utils.dialogoNeutro(context!!, (it.mensagemErro ?: it.exception?.message ?: ""), "OK")
+                return@Observer
+            }
+            it.obj?.let {
 
-        var usuario1 = Usuario()
-        usuario1.nome = "Luiz Roberto Accacio"
-        usuario1.email = "accacio@gmail.com"
-        usuario1.usuario = "20145264"
-        usuario1.tipo_usuario = 1
+                var usuario1 = Usuario()
+                usuario1.nome = "Luiz Roberto Accacio"
+                usuario1.email = "accacio@gmail.com"
+                usuario1.usuario = "20145264"
+                usuario1.tipo_usuario = 1
 
-        var usuario2 = Usuario()
-        usuario2.nome = "Marcia Gomes"
-        usuario2.email = "mgomes@gmail.com"
-        usuario2.usuario = "123456"
-        usuario2.tipo_usuario = 2
+                var usuario2 = Usuario()
+                usuario2.nome = "Marcia Gomes"
+                usuario2.email = "mgomes@gmail.com"
+                usuario2.usuario = "123456"
+                usuario2.tipo_usuario = 2
 
-        var listaUsuario = ArrayList<Usuario>()
-        listaUsuario.add(usuario1)
-        listaUsuario.add(usuario2)
+                var listaUsuario = it as ArrayList
+                listaUsuario.add(usuario1)
+                listaUsuario.add(usuario2)
 
-        recyclerView?.adapter = ItensUsuariosAdapter(listaUsuario, context!!)
+                recyclerView?.adapter = ItensUsuariosAdapter(listaUsuario, context!!)
+            }
+        })
+        usuarioViewModel.getAllUsuarios(context!!)
     }
 
     private fun fabListener(): View.OnClickListener
@@ -113,10 +130,13 @@ class FragGerirUsarios: Fragment()
                         usuario.nome = nome
                         usuario.email = email
 
-                        dialog.dismiss()
-                        Utils.dialogoNeutro(context!!, "Usuário criado com sucesso!", "OK")
-
-
+                        context?.let {
+                            usuarioViewModel.insertUsuario(it, usuario)
+                            dialog.dismiss()
+                            Utils.dialogoNeutro(it, "Usuário criado com sucesso!", "OK")
+                            usuarioViewModel.getAllUsuarios(it)
+                            recyclerView?.adapter?.notifyDataSetChanged()
+                        }
                     }
                     catch (e: Exception)
                     {
@@ -146,6 +166,10 @@ class FragGerirUsarios: Fragment()
                             getString(R.string.critica_obrigatorioEmail) ->
                                 fragment.findViewById<EditText>(R.id.cadastro_usuario_edtEmail)
                                     .error = getString(R.string.critica_obrigatorioEmail)
+                            else ->
+                                context?.let {
+                                    Utils.dialogoNeutro(it, e.message!!, getString(R.string.ok))
+                                }
                         }
                     }
                 })

@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -45,6 +46,15 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
 
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1'
+
+    def room_version = "2.2.5" // check latest version from docs
+
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
     api project(path: ':data')
     api project(path: ':repo')
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 }

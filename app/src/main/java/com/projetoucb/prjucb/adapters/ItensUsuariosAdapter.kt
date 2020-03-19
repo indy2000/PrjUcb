@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.projetoucb.data.entity.Usuario
 import com.projetoucb.prjucb.R
@@ -29,6 +31,11 @@ class ItensUsuariosAdapter(private val lista: List<Usuario>, private val context
         val tipo_usuario = if(lista[position].tipo_usuario == 1) context.getString(R.string.professor)
         else context.getString(R.string.administrador)
         holder.tvTipoUsuario.text = String.format(context.getString(R.string.campo_tipo_usuario), tipo_usuario)
+
+        holder.cv_gerir_usuarios.setOnLongClickListener(View.OnLongClickListener {
+            Toast.makeText(context, lista[position].id.toString(), Toast.LENGTH_SHORT).show()
+         true
+        })
     }
 
     inner class HolderUsuarios(itemView: View): RecyclerView.ViewHolder(itemView)
@@ -37,5 +44,6 @@ class ItensUsuariosAdapter(private val lista: List<Usuario>, private val context
         var tvEmail = itemView.findViewById<TextView>(R.id.cardview_gerir_usuarios_email)
         var tvUsuario = itemView.findViewById<TextView>(R.id.cardview_gerir_usuarios_usuario)
         var tvTipoUsuario = itemView.findViewById<TextView>(R.id.cardview_gerir_usuarios_tipo_usuario)
+        var cv_gerir_usuarios = itemView.findViewById<CardView>(R.id.cardview_gerir_usuarios)
     }
 }

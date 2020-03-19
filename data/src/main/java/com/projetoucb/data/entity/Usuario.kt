@@ -6,7 +6,7 @@ import androidx.room.*
 @Entity
 class Usuario
 {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @NonNull
     var id: Int? = null
 
