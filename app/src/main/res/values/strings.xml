@@ -37,6 +37,15 @@
     <string name="campo_usuario">Usuário: %s</string>
     <string name="campo_matricula">Matrícula: %s</string>
     <string name="campo_tipo_usuario">Tipo de Usuário: %s</string>
+    <string name="professor">Professor</string>
+    <string name="administrador">Administrador</string>
+    <string name="voltar">Voltar</string>
+    <string name="ok">OK</string>
+    <string name="critica_tipoUsuario">Selecione um tipo de usuário!</string>
+    <string name="critica_obrigatorioUsuario">Preencha o usuário!</string>
+    <string name="critica_obrigatorioNome">Preencha o nome!</string>
+    <string name="critica_obrigatorioEmail">Preencha o E-mail!</string>
+
 
 
     <!-- TODO: Remove or change this placeholder text -->

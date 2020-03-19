@@ -8,13 +8,15 @@
     android:orientation="vertical"
     android:padding="15dp"
     tools:context=".Login">
-<ImageView
-    android:layout_gravity="center"
-    android:layout_width="wrap_content"
-    android:layout_height="150dp"
-    android:layout_marginTop="15dp"
-    android:src="@drawable/logo_ucb"
-    android:tint="?logoColor"/>
+            <ImageView
+                android:id="@+id/login_ivLogo"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/logo_ucb"
+                android:tint="?logoColor"/>
+
     <TextView
         android:id="@+id/login_tvVersao"
         android:layout_width="wrap_content"

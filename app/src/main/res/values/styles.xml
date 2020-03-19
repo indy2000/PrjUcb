@@ -25,4 +25,8 @@
         <item name="backgroundTint">@color/colorPrimary</item>
         <item name="android:background">?attr/colorPrimary</item>
     </style>
+    <style name="teste" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
 </resources>

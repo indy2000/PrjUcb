@@ -9,6 +9,7 @@
     tools:context=".FragCadastroUsuario">
 
     <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/cadastro_usuario_spnTipoUsuario"
         android:layout_marginTop="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,6 +22,20 @@
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cadastro_usuario_edtUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/usuario"
+            android:textSize="15sp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cadastro_usuario_edtNome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/nome"
@@ -33,47 +48,35 @@
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cadastro_usuario_edtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email"
             android:textSize="15sp"/>
     </com.google.android.material.textfield.TextInputLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
-        <com.google.android.material.textfield.TextInputLayout
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/cadastro_usuario_btnVoltar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="25dp"
+            android:layout_marginHorizontal="20dp"
+            android:text="@string/voltar"
+            android:layout_weight="1"/>
 
-            android:layout_weight="1">
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/usuario"
-                android:textSize="15sp"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
+        <Button
+            android:id="@+id/cadastro_usuario_btnCadastrar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1">
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/senha"
-                android:textSize="15sp"
-                android:inputType="textPassword"/>
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="25dp"
+            android:layout_marginHorizontal="20dp"
+            android:text="@string/cadastrar"
+            android:layout_weight="1"/>
     </LinearLayout>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center"
-        android:text="@string/cadastrar"/>
-
 </LinearLayout>

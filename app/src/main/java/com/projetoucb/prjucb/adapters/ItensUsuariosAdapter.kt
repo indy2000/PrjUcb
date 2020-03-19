@@ -21,7 +21,14 @@ class ItensUsuariosAdapter(private val lista: List<Usuario>, private val context
     }
 
     override fun onBindViewHolder(holder: HolderUsuarios, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        holder.tvNome.text = String.format(context.getString(R.string.campo_nome), lista[position].nome)
+        holder.tvEmail.text = String.format(context.getString(R.string.campo_email), lista[position].email)
+        val campo_matUser = if(lista[position].tipo_usuario == 1) context.getString(R.string.campo_matricula)
+        else context.getString(R.string.campo_usuario)
+        holder.tvUsuario.text = String.format(campo_matUser, lista[position].usuario)
+        val tipo_usuario = if(lista[position].tipo_usuario == 1) context.getString(R.string.professor)
+        else context.getString(R.string.administrador)
+        holder.tvTipoUsuario.text = String.format(context.getString(R.string.campo_tipo_usuario), tipo_usuario)
     }
 
     inner class HolderUsuarios(itemView: View): RecyclerView.ViewHolder(itemView)
